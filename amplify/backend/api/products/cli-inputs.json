@@ -1,0 +1,21 @@
+{
+  "version": 1,
+  "paths": {
+    "/product/{productId}": {
+      "name": "/product/{productId}",
+      "lambdaFunction": "ecommerceproduct",
+      "permissions": {
+        "setting": "protected",
+        "auth": [
+          "create",
+          "read",
+          "update",
+          "delete"
+        ],
+        "guest": [
+          "read"
+        ]
+      }
+    }
+  }
+}
