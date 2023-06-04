@@ -6,7 +6,7 @@ const Authentication = () => {
         <Authenticator>
             {({ signOut }) => (
                 <div>
-                    <h1>Welcome User!</h1>
+                    <h1>Welcome Userr!</h1>
                     <button onClick={signOut}>Sign out</button>
                 </div>
             )}
