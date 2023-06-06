@@ -15,22 +15,44 @@ function Register() {
     const [username, setUserName] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
+    const [userType, setUserType] = useState(0);
+    const [fullname, setFullname] = useState('');
+    const [address, setAddress] = useState('');
+    const [description, setDescription] = useState('');
 
     const handleRegister = async () => {
         try {
             console.log(username)
             console.log(password)
             console.log(email)
+            console.log(userType);
 
-            const { user } = await Auth.signUp({
-                username: username,
-                password: password,
-                attributes: {
-                    email: email,
+            let isBuyer = 'false';
+            if(userType != 0){
+                if(userType == 1){
+                    isBuyer = 'true';
                 }
-            });
 
-            navigate('/validate')            
+                console.log(isBuyer);
+                const { user } = await Auth.signUp({
+                    username: username,
+                    password: password,
+                    attributes: {
+                        email: email,
+                        'custom:address':address,
+                        'custom:description':description,
+                        'custom:fullName':fullname,
+                        'custom:isBuyer':isBuyer,
+                    }
+                });
+
+                console.log(user);
+
+                navigate('/validate') 
+            }  
+            else{
+                console.log("error user type");
+            }     
         } catch (err) { console.log(err) }
     }
 
@@ -43,7 +65,7 @@ function Register() {
                 <Col sm={6}>
                     <Form>
 
-                      <Form.Group className="mb-3" controlId="formBasicEmail">
+                      <Form.Group className="mb-3" controlId="formEmail">
                             <Form.Label>Email Address</Form.Label>
                             <Form.Control type="email" placeholder="Enter email"
                                 onChange={evt => setEmail(evt.target.value)} />
@@ -52,7 +74,7 @@ function Register() {
                             </Form.Text>
                         </Form.Group>
 
-                        <Form.Group className="mb-3" controlId="formBasicText">
+                        <Form.Group className="mb-3" controlId="formUsername">
                             <Form.Label>User Name</Form.Label>
                             <Form.Control type="text" placeholder="Enter User Name"
                                 onChange={evt => setUserName(evt.target.value)} />
@@ -62,6 +84,33 @@ function Register() {
                             <Form.Label>Password</Form.Label>
                             <Form.Control type="password" minLength="8" placeholder="Enter Password"
                                 onChange={evt => setPassword(evt.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group>
+                            <Form.Label>Type of User</Form.Label>
+                            <Form.Select aria-label="Default select example" onChange={evt => setUserType(evt.target.value)}>
+                                <option value="0">Click to select</option>
+                                <option value="1">Buyer</option>
+                                <option value="2">Seller</option>
+                            </Form.Select>
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formFullname">
+                            <Form.Label>Full Name</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Full name"
+                                onChange={evt => setFullname(evt.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formAddress">
+                            <Form.Label>Address</Form.Label>
+                            <Form.Control type="text" placeholder="Enter Address"
+                                onChange={evt => setAddress(evt.target.value)} />
+                        </Form.Group>
+
+                        <Form.Group className="mb-3" controlId="formDescription">
+                            <Form.Label>Description</Form.Label>
+                            <Form.Control as="textarea" rows={3} placeholder="Enter Description"
+                                onChange={evt => setDescription(evt.target.value)}/>
                         </Form.Group>
 
                         <Button variant="primary" type="button"

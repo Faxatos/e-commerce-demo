@@ -15,6 +15,7 @@ import SiteFooter from './components/SiteFooter';
 import Home from './pages/Home';
 import Login from './pages/auth/Login';
 import Register from './pages/auth/Register';
+import Validate from './pages/auth/Validate';
 import Orders from './pages/Orders';
 import Cart from './pages/Cart';
 import Profile from './pages/Profile';
@@ -37,6 +38,7 @@ function App() {
         <Route path='/' exact={true} element={<Home isAuthenticated={isAuthenticated} />} />
         <Route path='/login' element={<Login updateAuthStatus={updateAuthStatus} />} />
         <Route path='/register' element={<Register />} />
+        <Route path='/validate' element={<Validate />} />
         <Route path='/orders' element={<Orders isAuthenticated={isAuthenticated} />} />
         <Route path='/cart' element={<Cart isAuthenticated={isAuthenticated} />} />
         <Route path='/profile' element={<Profile isAuthenticated={isAuthenticated} />} />

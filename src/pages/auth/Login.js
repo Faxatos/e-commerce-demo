@@ -12,19 +12,19 @@ import Button from 'react-bootstrap/Button';
 function Login(props) {
     const navigate = useNavigate()
     
-    const [email, setEmail] = useState('');
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const handleLogin = async () => {
         try {
             console.log('Login');
-            console.log(email);
+            console.log(username);
             console.log(password);    
 
-            await Auth.signIn(email, password)
+            await Auth.signIn(username, password)
 
             props.updateAuthStatus(true)
-            navigate('/pages/home')
+            navigate('/home')
         } catch (err) { console.log(err) }
     }
 
@@ -37,9 +37,9 @@ function Login(props) {
                 <Col sm={6}>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Label>E-mail Address</Form.Label>
-                            <Form.Control type="email" placeholder="Enter email"
-                                onChange={evt => setEmail(evt.target.value)} />
+                            <Form.Label>Username</Form.Label>
+                            <Form.Control type="email" placeholder="Enter username"
+                                onChange={evt => setUsername(evt.target.value)} />
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">

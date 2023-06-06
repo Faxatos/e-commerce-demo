@@ -22,7 +22,7 @@ function SiteNav(props) {
         <header>
             <Navbar bg="dark" expand="lg" variant="dark">
                 <Container>
-                    <Navbar.Brand><Nav.Link href="/">E-Commerce Demo</Nav.Link></Navbar.Brand>
+                    <Navbar.Brand>E-Commerce Demo</Navbar.Brand>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                             <Navbar.Collapse id="basic-navbar-nav">
                                 {
